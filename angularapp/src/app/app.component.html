@@ -1,0 +1,69 @@
+<h1>Система обліку студентів КНУ</h1>
+
+<div *ngIf="!isCreate && !isEdit">
+  <button  class="btn-add" (click)="isCreate=true;">Додати студента</button>
+</div>
+
+<div></div>
+
+<div *ngIf="!isCreate && !isEdit">
+  <table class="table">
+    <thead class="table-primary">
+      <tr>
+        <td width="100px">Прізвище</td>
+        <td width="100px">Ім'я</td>
+        <td width="100px">По-батькові</td>
+        <td width="100px">Номер студентського</td>
+        <td width="100px">Курс</td>
+        <td width="100px">Кафедра</td>
+        <td width="100px">Група</td>
+        <td width="100px">Спеціальність</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let student of this.studentsArray">
+        <td>{{student.lastName}}</td>
+        <td>{{student.firstName}}</td>
+        <td>{{student.middleName}}</td>
+        <td>{{student.studentNumber}}</td>
+        <td>{{student.course}}</td>
+        <td>{{student.departmentId}}</td>
+        <td>{{student.group}}</td>
+        <td>{{student.specialty}}</td>
+        <td>
+          <button class="btn-edit" (click)="edit(student)">Змінити</button>
+          <button class="btn-delete" (click)="deleteStudent(student.id)">Видалити</button>
+        </td>
+
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+
+<div *ngIf="isCreate" style="margin-top: 10px;">
+  <input type="text" [(ngModel)]="newStudentlastName" placeholder="Прізвище"><br>
+  <input type="text" [(ngModel)]="newStudentfirstName" placeholder="Ім'я"><br>
+  <input type="text" [(ngModel)]="newStudentmiddleName" placeholder="По-батькові"><br>
+  <input type="number" [(ngModel)]="newStudentstudentNumber" placeholder="Номер студентського"><br>
+  <input type="number" [(ngModel)]="newStudentcourse" placeholder="Курс"><br>
+  <input type="number" [(ngModel)]="newStudentdepartmentId" placeholder="Кафедра"><br>
+  <input type="text" [(ngModel)]="newStudentgroup" placeholder="Група"><br>
+  <input type="text" [(ngModel)]="newStudentspecialty" placeholder="Спеціальність"><br>
+  <button class="btn-add" (click)="createNewStudent()">Додати нового студента</button>
+</div>
+
+
+<div *ngIf="isEdit" style="margin-top: 10px;">
+  <input type="text" [(ngModel)]="editStudentlastName" placeholder="Прізвище"><br>
+  <input type="text" [(ngModel)]="editStudentfirstName" placeholder="Ім'я"><br>
+  <input type="text" [(ngModel)]="editStudentmiddleName" placeholder="По-батькові"><br>
+  <input type="number" [(ngModel)]="editStudentstudentNumber" placeholder="Номер студентського"><br>
+  <input type="number" [(ngModel)]="editStudentcourse" placeholder="Курс"><br>
+  <input type="text" [(ngModel)]="editStudentdepartmentId" placeholder="Кафедра"><br>
+  <input type="text" [(ngModel)]="editStudentgroup" placeholder="Група"><br>
+  <input type="text" [(ngModel)]="editStudentspecialty" placeholder="Спеціальність"><br>
+  <button class="btn-edit" (click)="editStudent()">Змінити студента</button>
+
+</div>
